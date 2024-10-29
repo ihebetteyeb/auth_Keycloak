@@ -7,8 +7,17 @@ import Protect from "./components/protected";
 import Publice from "./components/public";
 
 function App() {
-  const [isLogin, token] = useAuth();
-  return isLogin ? <Protect token={token} /> : <Publice />;
+  const [isLogin, token, logout] = useAuth();
+  return isLogin ? (
+    <>
+      <button onClick={logout} type="submit">
+        logOut
+      </button>
+      <Protect token={token} />
+    </>
+  ) : (
+    <Publice />
+  );
 }
 
 export default App;
